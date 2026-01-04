@@ -63,7 +63,7 @@ module.exports. run = function({ api, event, args, getText }) {
   
     for (let item of returnArray) msg += `   ╏  ${++i} ➥ ${item}\n`;
     const randomText = [ "hy bhy baby","g","h"];
-    const text = `🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n╭──────╮\n✅ 𝐏𝐀𝐆𝐄   (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})✅\n╰──────╯\n𝗧𝘆𝗽𝗲: °${prefix}𝗛𝗲𝗹𝗽°\n𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: ${arrayInfo.length} \n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n╭────────╮\n🙈 𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 🙈\n╰────────╯  \n╭──────╮\n🥵 𒁍≛⃝𝗠𝗔𝗥⃟𝗜𝗡𝗔\n╰──────╯\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝 \nAGAIN ON GROUP\n🌜𝐎𝐖𝐍𝐄𝐑 𝐈𝐃🌛\nMARINA🩷\n\n🌜𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐂𝐇𝐀𝐍𝐄𝐋🌛\nhttps://youtube.com/\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝 \n\n╭───────╮\n🥵 𝗙𝗢𝗥 𝗛𝗔𝗧𝗘𝗥𝗦 🥵\n╰───────╯ \n      𝗙𝗘𝗘𝗟 𝗧𝗛𝗘 𝗣𝗢𝗪𝗘𝗥 𝗢𝗙 ཫ༄𒁍⃝𝐌𝐀𝐑⃟𝐈𝐍𝐀 \n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n┎───────────┑\n ❘ 👑 ཫ༄𒁍≛⃝𝗠𝗔𝗥⃟𝗜𝗡𝗔👑\n┗───────────┙\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝`;
+    const text = `🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n╭──────╮\n✅ 𝐏𝐀𝐆𝐄   (${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)})✅\n╰──────╯\n𝗧𝘆𝗽𝗲: °${prefix}𝗛𝗲𝗹𝗽°\n𝗧𝗼𝘁𝗮𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀: ${arrayInfo.length} \n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n╭────────╮\n🙈 𝗡𝗔𝗠𝗘 𝗢𝗪𝗡𝗘𝗥 🙈\n╰────────╯  \n╭──────╮\n🥵 𒁍≛⃝IMRAN\n╰──────╯\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝 \nAGAIN ON GROUP\n🌜𝐎𝐖𝐍𝐄𝐑 𝐈𝐃🌛\nImran🩷\n\n🌜𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐂𝐇𝐀𝐍𝐄𝐋🌛\nhttps://youtube.com/\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝 \n\n╭───────╮\n🥵 𝗙𝗢𝗥 𝗛𝗔𝗧𝗘𝗥𝗦 🥵\n╰───────╯ \n      𝗙𝗘𝗘𝗟 𝗧𝗛𝗘 𝗣𝗢𝗪𝗘𝗥 𝗢𝗙 ཫ༄𒁍⃝𝐌𝐀𝐑⃟𝐈𝐍𝐀 \n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝\n┎───────────┑\n ❘ 👑 ཫ༄𒁍≛⃝IMRAN👑\n┗───────────┙\n🌝▬▬▬▬▬▬▬▬▬▬▬▬🌝`;
     return api.sendMessage(msg  + text, threadID, async (error, info) => {
 			if (autoUnsend) {
 				await new Promise(resolve => setTimeout(resolve, delayUnsend * 10000));
