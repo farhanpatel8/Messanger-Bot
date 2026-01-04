@@ -26,15 +26,39 @@ module.exports.languages = {
 module.exports.handleEvent = function ({ api, event, getText }) {
 	const { commands } = global.client;
 	const { threadID, messageID, body } = event;
+	if (!body) return;
 
-	if (!body || typeof body == "cmd" || body.indexOf("help") != 0) return;
-	const splitBody = body.slice(body.indexOf("help")).trim().split(/\s+/);
-	if (splitBody.length == 1 || !commands.has(splitBody[1].toLowerCase())) return;
 	const threadSetting = global.data.threadData.get(parseInt(threadID)) || {};
-	const command = commands.get(splitBody[1].toLowerCase());
-	const prefix = (threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : global.config.PREFIX;
-	return api.sendMessage(getText("moduleInfo", command.config.name, command.config.description, `${prefix}${command.config.name} ${(command.config.usages) ? command.config.usages : ""}`, command.config.commandCategory, command.config.cooldowns, ((command.config.hasPermssion == 0) ? getText("user") : (command.config.hasPermssion == 1) ? getText("adminGroup") : getText("adminBot")), command.config.credits), threadID, messageID);
-}
+	const prefix = threadSetting.PREFIX || global.config.PREFIX;
+
+	// example: .help ping
+	if (!body.startsWith(prefix + "help")) return;
+
+	const args = body.slice(prefix.length).trim().split(/\s+/);
+	if (args.length < 2) return;
+
+	const command = commands.get(args[1].toLowerCase());
+	if (!command) return;
+
+	return api.sendMessage(
+		getText(
+			"moduleInfo",
+			command.config.name,
+			command.config.description,
+			`${prefix}${command.config.name} ${command.config.usages || ""}`,
+			command.config.commandCategory,
+			command.config.cooldowns,
+			command.config.hasPermssion == 0
+				? getText("user")
+				: command.config.hasPermssion == 1
+				? getText("adminGroup")
+				: getText("adminBot"),
+			command.config.credits
+		),
+		threadID,
+		messageID
+	);
+};
 
 module.exports. run = function({ api, event, args, getText }) {
 	const { commands } = global.client;
