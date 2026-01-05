@@ -276,6 +276,8 @@ module.exports = function ({ api, models }) {
                 handleCommand({ event });
                 handleReply({ event });
                 handleCommandEvent({ event });
+                handleEvent({ event });   // 🔥 THIS LINE WAS MISSING
+                break;
                 // 🔥 ADD THIS
                 for (const name of global.client.eventRegistered) {
                     const cmd = global.client.commands.get(name);
