@@ -18,8 +18,8 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
     if (!prefixRegex.test(body)) return;
     const adminbot = require('./../../config.json');
 //// admin -pa /////
-    if(!global.data.allThreadID.includes(threadID) && !ADMINBOT.includes(senderID) && adminbot.adminPaOnly == true)
-    return api.sendMessage("MODE » Only admins can use bots in their own inbox", threadID, messageID)
+//    if(!global.data.allThreadID.includes(threadID) && !ADMINBOT.includes(senderID) && adminbot.adminPaOnly == true)
+//     return api.sendMessage("MODE » Only admins can use bots in their own inbox", threadID, messageID)
     ////end 
     if (!ADMINBOT.includes(senderID) && adminbot.adminOnly == true) {
       if (!ADMINBOT.includes(senderID) && adminbot.adminOnly == true) return api.sendMessage('MODE » Only admins can use bots', threadID, messageID)
@@ -31,7 +31,7 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
     var threadInf = (threadInfo.get(threadID) || await Threads.getInfo(threadID));
     const findd = threadInf.adminIDs.find(el => el.id == senderID);
     if (dataAdbox.adminbox.hasOwnProperty(threadID) && dataAdbox.adminbox[threadID] == true && !ADMINBOT.includes(senderID) && !findd && event.isGroup == true) return api.sendMessage('MODE » Only admins can use bots', event.threadID, event.messageID)
-    if (userBanned.has(senderID) || threadBanned.has(threadID) || allowInbox == ![] && senderID == threadID) {
+    if (userBanned.has(senderID) || threadBanned.has(threadID) || (!allowInbox && senderID === threadID)) {
       if (!ADMINBOT.includes(senderID.toString())) {
         if (userBanned.has(senderID)) {
           const { reason, dateAdded } = userBanned.get(senderID) || {};
