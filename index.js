@@ -1,3 +1,4 @@
+const prefix = global.config.PREFIX || ".";
 const { spawn } = require("child_process");
 const axios = require("axios");
 const logger = require("./utils/log");
