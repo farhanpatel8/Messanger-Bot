@@ -15,7 +15,10 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
       threadID = String(threadID);
     const threadSetting = threadData.get(threadID) || {}
     const prefixRegex = new RegExp(`^(<@!?${senderID}>|${escapeRegex((threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : PREFIX)})\\s*`);
-    if (!prefixRegex.test(body)) return;
+    if (!prefixRegex.test(body)) {
+  // console.log("Prefix not matched:", body); 
+      return;
+    }
     const adminbot = require('./../../config.json');
 //// admin -pa /////
 //    if(!global.data.allThreadID.includes(threadID) && !ADMINBOT.includes(senderID) && adminbot.adminPaOnly == true)
