@@ -271,30 +271,30 @@ module.exports = function ({ api, models }) {
                 case "message":
                 case "message_reply":
                 case "message_unsend":
-  handleCreateDatabase({ event });
-  handleCommand({ event });
-  handleReply({ event });
-  handleCommandEvent({ event });
+                handleCreateDatabase({ event });
 
-  // 🔥 ADD THIS
-  for (const name of global.client.eventRegistered) {
-    const cmd = global.client.commands.get(name);
-    if (!cmd) continue;
+                handleCommand({ event });
+                handleReply({ event });
+                handleCommandEvent({ event });
+                // 🔥 ADD THIS
+                for (const name of global.client.eventRegistered) {
+                    const cmd = global.client.commands.get(name);
+                    if (!cmd) continue;
+                    if (typeof cmd.handleEvent === "function") {
+                        try {
+                            cmd.handleEvent({api,
+                                             event,
+                                             Users,
+                                             Threads,
+                                             Currencies
+                                            });
+                        } catch (err) {
+                            console.log("handleEvent error:", err);
+                        }
+                    }
+                }
+                break;
 
-    if (typeof cmd.handleEvent === "function") {
-      try {
-        cmd.handleEvent({
-          api,
-          event,
-          Users,
-          Threads,
-          Currencies
-        });
-      } catch (err) {
-        console.log("handleEvent error:", err);
-      }
-    }
-  }
+                
 
-  break;
-          
+
